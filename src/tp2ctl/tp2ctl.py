@@ -1,7 +1,7 @@
 import argparse
 import re
 from os import listdir
-from os.path import realpath, join, isfile, isdir
+from os.path import realpath, exists, join, isdir
 from fcntl import ioctl
 from struct import pack
 
@@ -123,7 +123,7 @@ def main():
 
 
 def file_path(path):
-    if isfile(path):
+    if exists(path):
         return path
     else:
         raise argparse.ArgumentTypeError(
