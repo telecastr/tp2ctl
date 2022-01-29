@@ -42,6 +42,23 @@ optional arguments:
                         disable 'Thinkpad Preferred Scrolling'
 ```
 
+### Automatically configure when plugging in
+To automatically apply settings whenever you plug in, you can use an udev rule.
+
+Create a file at `/etc/udev/rules.d/99-tp2ctl.rules`:
+
+```
+# The Lenovo TrackPoint Keyboard II needs to be configured via raw hid commands
+# Read in bInterfaceNumber into a ID_USB_INTERFACE_NUM
+SUBSYSTEMS=="usb", ENV{ID_USB_INTERFACE_NUM}="$attr{bInterfaceNumber}"
+
+# … so we can use it down here
+SUBSYSTEM=="hidraw", ACTION=="add", ATTRS{idVendor}=="17ef", ATTRS{idProduct}=="60ee", ENV{ID_USB_INTERFACE_NUM}=="01", RUN+="/usr/bin/tp2ctl -s 8 --preferred-scrolling -d /dev/%k"
+```
+
+Tweak the path to the tp2ctl script, and the arguments accordingly, and make sure the script is owned and only writable by `root`.
+
+
 ## Known Lmitiations
 * Only tested / working with 2.4GHz Transceiver
 * The internal Trackpoint of my Thinkpad seems to be much more sensitive as the one of the *Trackpoint Keyboard II*. However, this behaviour can also be observed using *Windows*, so I blame *Lenovo* for this ...
@@ -94,5 +111,4 @@ The Windows Companion App sends USB `SET_REPORT`requests to configure the keyboa
 
 ## ToDo
 * Implement/Test bluetooth-support
-* Add sh-script to run when automatically when keboard is plugged in
 * Fix pasting on middle-button click
