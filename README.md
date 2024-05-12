@@ -3,7 +3,7 @@ Simple python tool to allow configuration of the *Lenovo Trackpoint Keyboard II 
 
 *Tested on Ubuntu 20.04 and Arch*
 
-## NOTE: You probably don't need this tool if you want to use your Lenovo Trackpoint Keyboard II on Linux since the keyboard is fully supported starting with kernel 5.19 (thx to @floki). For further information see [issue #3 ](https://github.com/telecastr/tp2ctl/issues/3). Eventhough this repo is not actively maintained anymore, feel free to create a PR if you notice any issues. 
+## NOTE: You probably don't need this tool if you want to use your Lenovo Trackpoint Keyboard II on Linux since the keyboard is fully supported starting with kernel 5.19 (thx to @ValdikSS and @flokli). For further information see [issue #3 ](https://github.com/telecastr/tp2ctl/issues/3). Eventhough this repo is not actively maintained anymore, feel free to create a PR if you notice any issues. 
 
 ## Installation
 **Install via pip:**
